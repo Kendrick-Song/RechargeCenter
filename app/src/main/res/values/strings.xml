@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">RechargeCenter</string>
     <string name="back">返回</string>
+    <string name="recharge_now">立即充值</string>
 </resources>

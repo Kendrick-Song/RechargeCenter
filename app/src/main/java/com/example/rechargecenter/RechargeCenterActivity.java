@@ -1,5 +1,7 @@
 package com.example.rechargecenter;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.design.widget.TabLayout;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -44,6 +47,7 @@ public class RechargeCenterActivity extends AppCompatActivity {
             }
         });
 
+        //页面切换
         TabLayout rechargeTab = findViewById(R.id.recharge_tab);
         ViewPager rechargePager = findViewById(R.id.recharge_pager);
         titles.add("充话费");
@@ -75,5 +79,6 @@ public class RechargeCenterActivity extends AppCompatActivity {
             }
         });
         rechargeTab.setupWithViewPager(rechargePager);
+
     }
 }
