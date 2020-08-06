@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <include layout="@layout/title" />
+
+    <ImageView
+        android:id="@+id/iv_success_pay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="65dp"
+        android:src="@mipmap/zmkh_pay_success_icon" />
+
+    <TextView
+        android:id="@+id/tv_success_pay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:text="恭喜您，支付成功"
+        android:textColor="@color/color_333333"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btn_show_details"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="54dp"
+        android:background="@drawable/white_bnt_bg"
+        android:text="查看详情"
+        android:textColor="#FF494A"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+</LinearLayout>

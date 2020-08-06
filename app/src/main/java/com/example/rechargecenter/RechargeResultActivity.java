@@ -9,13 +9,12 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-public class RechargePayActivity extends AppCompatActivity {
+public class RechargeResultActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recharge_pay);
-
+        setContentView(R.layout.activity_recharge_result);
         //隐藏系统自带标题栏
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -23,7 +22,7 @@ public class RechargePayActivity extends AppCompatActivity {
         }
         //设置标题
         TextView title_tv = findViewById(R.id.title_tv);
-        title_tv.setText("充值支付");
+        title_tv.setText("支付结果");
         //返回Button
         ImageButton title_btn_back = findViewById(R.id.title_btn_back);
         title_btn_back.setOnClickListener(new View.OnClickListener() {
@@ -32,14 +31,14 @@ public class RechargePayActivity extends AppCompatActivity {
                 finish();
             }
         });
+        //TODO
+//        Button btn_show_details = findViewById(R.id.btn_show_details);
+//        btn_show_details.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(RechargeResultActivity.this,)
+//            }
+//        });
 
-        Button btn_confirm_pay = findViewById(R.id.btn_confirm_pay);
-        btn_confirm_pay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(RechargePayActivity.this,RechargeResultActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 }
