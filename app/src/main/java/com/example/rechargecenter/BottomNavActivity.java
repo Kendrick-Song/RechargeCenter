@@ -24,8 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BottomNavActivity extends AppCompatActivity {
-    List<Fragment> fragments = new ArrayList<>();
-    List<String> titles = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,39 +56,5 @@ public class BottomNavActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
     }
 
-    public void initTab(View mrechargeTab,View mrechargePager) {
 
-        //页面切换
-        TabLayout rechargeTab = (TabLayout) mrechargeTab;
-        ViewPager rechargePager = (ViewPager) mrechargePager;
-        titles.add("充话费");
-        titles.add("充流量");
-        titles.add("充视频会员");
-        fragments.add(new RechargeHfFragment());
-        fragments.add(new RechargeLlFragment());
-        fragments.add(new RechargeSpFragment());
-        rechargePager.setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
-            @Override
-            public Fragment getItem(int position) {
-                return fragments.get(position);
-            }
-
-            @Override
-            public int getCount() {
-                return fragments.size();
-            }
-
-            @Override
-            public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-                super.destroyItem(container, position, object);
-            }
-
-            @Nullable
-            @Override
-            public CharSequence getPageTitle(int position) {
-                return titles.get(position);
-            }
-        });
-        rechargeTab.setupWithViewPager(rechargePager);
-    }
 }
