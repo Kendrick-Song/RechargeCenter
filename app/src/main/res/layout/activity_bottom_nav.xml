@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
-        android:background="#eeeeee"
+        android:background="@drawable/gray_stroke"
         app:itemIconTint="@drawable/selector_tab_color"
         app:itemTextColor="@drawable/selector_tab_color"
         app:layout_constraintBottom_toBottomOf="parent"
