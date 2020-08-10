@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 
-import com.example.rechargecenter.BottomNavActivity;
 import com.example.rechargecenter.R;
 import com.example.rechargecenter.RechargeHfFragment;
 import com.example.rechargecenter.RechargeLlFragment;
@@ -27,7 +26,6 @@ public class HomeFragment extends Fragment {
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
 
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
@@ -38,7 +36,7 @@ public class HomeFragment extends Fragment {
     }
 
 
-    public void initTab() {
+    private void initTab() {
         titles.add("充话费");
         titles.add("充流量");
         titles.add("充视频会员");
