@@ -3,9 +3,10 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/item_hf"
-    android:layout_width="108dp"
+    android:layout_width="match_parent"
     android:layout_height="64dp"
     android:layout_marginTop="10.5dp"
+    android:layout_marginStart="10dp"
     android:background="@drawable/select_item_bg"
     android:orientation="vertical">
 
