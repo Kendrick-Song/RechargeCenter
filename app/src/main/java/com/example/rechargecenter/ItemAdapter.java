@@ -5,10 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
+    private int lastPressIndex = -1;
     private int[] amounts;
 
     public ItemAdapter(int[] amounts) {
@@ -19,7 +21,21 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.hf_item, viewGroup, false);
-        return new ViewHolder(view);
+        final ViewHolder viewHolder = new ViewHolder(view);
+        viewHolder.item_hf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int position = viewHolder.getAdapterPosition();
+                if (lastPressIndex == position) {
+                    lastPressIndex = -1;
+                } else {
+                    lastPressIndex = position;
+                }
+                notifyDataSetChanged();
+            }
+        });
+
+        return viewHolder;
     }
 
     @Override
@@ -27,6 +43,15 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         viewHolder.tv_origin_price.setText(amounts[i] + "元");
         //TODO:网络接口-折扣
         viewHolder.tv_sale_price.setText(amounts[i] + "元");
+        if (viewHolder.getAdapterPosition() == lastPressIndex) {
+            viewHolder.item_hf.setSelected(true);
+            viewHolder.tv_origin_price.setSelected(true);
+            viewHolder.tv_sale_price.setSelected(true);
+        } else {
+            viewHolder.item_hf.setSelected(false);
+            viewHolder.tv_origin_price.setSelected(false);
+            viewHolder.tv_sale_price.setSelected(false);
+        }
     }
 
     @Override
@@ -38,11 +63,13 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
     static class ViewHolder extends RecyclerView.ViewHolder {
         private TextView tv_origin_price;
         private TextView tv_sale_price;
+        private LinearLayout item_hf;
 
         public ViewHolder(View itemView) {
             super(itemView);
             this.tv_origin_price = itemView.findViewById(R.id.tv_origin_price);
             this.tv_sale_price = itemView.findViewById(R.id.tv_sale_price);
+            this.item_hf = itemView.findViewById(R.id.item_hf);
         }
     }
 }
