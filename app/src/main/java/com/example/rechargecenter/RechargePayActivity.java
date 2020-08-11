@@ -39,6 +39,7 @@ public class RechargePayActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(RechargePayActivity.this,RechargeResultActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

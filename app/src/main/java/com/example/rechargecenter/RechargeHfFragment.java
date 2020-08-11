@@ -43,8 +43,8 @@ public class RechargeHfFragment extends Fragment {
             public void onClick(View view) {
                 // validate
                 String phone = et_phone.getText().toString().trim();
-                if (TextUtils.isEmpty(phone)) {
-                    Toast.makeText(getActivity(), "充值号码不能为空", Toast.LENGTH_SHORT).show();
+                if (phone.length() != 11) {
+                    Toast.makeText(getActivity(), "请输入正确的手机号码", Toast.LENGTH_SHORT).show();
                 } else {
                     Intent intent = new Intent(getActivity(), RechargePayActivity.class);
                     startActivity(intent);
