@@ -37,6 +37,8 @@ public class HomeFragment extends Fragment {
 
 
     private void initTab() {
+        titles.clear();
+        fragments.clear();
         titles.add("充话费");
         titles.add("充流量");
         titles.add("充视频会员");
