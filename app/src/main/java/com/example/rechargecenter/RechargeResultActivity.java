@@ -5,8 +5,10 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.Callback;
 
@@ -35,16 +37,17 @@ public class RechargeResultActivity extends AppCompatActivity {
                 finish();
             }
         });
-//todo
-//        Button btn_show_details = findViewById(R.id.btn_show_details);
-//        btn_show_details.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(RechargeResultActivity.this, BottomNavActivity.class);
-//                startActivity(intent);
-//                finish();
-//            }
-//        });
+        //订单界面
+        Button btn_show_details = findViewById(R.id.btn_show_details);
+        btn_show_details.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RechargeResultActivity.this, BottomNavActivity.class);
+                intent.putExtra("order", 1);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     public void getData() {

@@ -7,7 +7,5 @@
     tools:context=".ui.dashboard.DashboardFragment">
 
 
-    <include layout="@layout/title"/>
-
 
 </android.support.constraint.ConstraintLayout>

@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class RechargeHfFragment extends Fragment {
@@ -46,6 +45,7 @@ public class RechargeHfFragment extends Fragment {
         rv_recharge = view.findViewById(R.id.rv_recharge);
         et_phone = view.findViewById(R.id.input_phone);
         btn_recharge = view.findViewById(R.id.btn_recharge_now);
+
         btn_recharge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

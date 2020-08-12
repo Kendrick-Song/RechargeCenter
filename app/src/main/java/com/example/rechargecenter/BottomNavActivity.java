@@ -11,15 +11,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class BottomNavActivity extends AppCompatActivity {
 
@@ -27,14 +25,13 @@ public class BottomNavActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bottom_nav);
+
         //隐藏系统自带标题栏
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.hide();
         }
-        //设置标题
-        TextView title_tv = findViewById(R.id.title_tv);
-        title_tv.setText("充值中心");
+
         //返回Button
         ImageButton title_btn_back = findViewById(R.id.title_btn_back);
         title_btn_back.setOnClickListener(new View.OnClickListener() {
@@ -43,6 +40,7 @@ public class BottomNavActivity extends AppCompatActivity {
                 finish();
             }
         });
+
         //底部导航栏
         BottomNavigationView navView = findViewById(R.id.nav_view);
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
@@ -65,6 +63,12 @@ public class BottomNavActivity extends AppCompatActivity {
                 }
             }
         });
+
+        int id = getIntent().getIntExtra("order", 0);
+        if (id == 1) {
+            navController.navigate(R.id.navigation_order);
+        }
+
     }
 
     //点击空白处收起软键盘
@@ -74,8 +78,7 @@ public class BottomNavActivity extends AppCompatActivity {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             if (BottomNavActivity.this.getCurrentFocus() != null) {
                 if (BottomNavActivity.this.getCurrentFocus().getWindowToken() != null) {
-                    imm.hideSoftInputFromWindow(BottomNavActivity.this.getCurrentFocus().getWindowToken(),
-                            InputMethodManager.HIDE_NOT_ALWAYS);
+                    imm.hideSoftInputFromWindow(BottomNavActivity.this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 }
             }
         }

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.widget.TextView;
 
 import com.example.rechargecenter.R;
 import com.example.rechargecenter.RechargeHfFragment;
@@ -18,6 +19,7 @@ import com.example.rechargecenter.RechargeSpFragment;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class HomeFragment extends Fragment {
 
@@ -29,6 +31,10 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+
+        //设置标题
+        TextView title_tv = Objects.requireNonNull(getActivity()).findViewById(R.id.title_tv);
+        title_tv.setText("充值中心");
         mTabLayout = root.findViewById(R.id.recharge_tab);
         mViewPager = root.findViewById(R.id.recharge_pager);
         initTab();
