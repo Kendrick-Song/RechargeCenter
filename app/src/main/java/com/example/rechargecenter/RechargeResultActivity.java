@@ -35,7 +35,7 @@ public class RechargeResultActivity extends AppCompatActivity {
                 finish();
             }
         });
-//
+//todo
 //        Button btn_show_details = findViewById(R.id.btn_show_details);
 //        btn_show_details.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -45,8 +45,6 @@ public class RechargeResultActivity extends AppCompatActivity {
 //                finish();
 //            }
 //        });
-
-
     }
 
     public void getData() {
