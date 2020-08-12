@@ -82,10 +82,41 @@ public class RechargeHfFragment extends Fragment {
         ib_phone_list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), ContactsActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(getActivity(), ContactsActivity.class);
+//                startActivity(intent);
+                Intent intent=new Intent(Intent.ACTION_PICK, ContactsContract.CommonDataKinds.Phone.CONTENT_URI);
+                startActivityForResult(intent,1000);
             }
         });
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==1000){
+            if (resultCode==Activity.RESULT_OK){
+                if (data!=null){
+                    Uri uri=data.getData();
+                    String contact=getPhoneContacts(uri);
+                    if (contact!=null){
+                        et_phone.setText(contact);
+                    }
+                }
+            }
+        }
+    }
+
+    private String getPhoneContacts(Uri uri){
+        String contact ;
+        //得到ContentResolver对象
+        ContentResolver cr = getActivity().getContentResolver();
+        Cursor cursor = cr.query(uri, null, null, null, null);
+        if (cursor != null&&cursor.moveToFirst()) {
+            contact=cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+            cursor.close();
+        } else {
+            return null;
+        }
+        return contact;
+    }
 }
