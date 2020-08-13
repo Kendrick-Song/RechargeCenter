@@ -13,13 +13,15 @@ import android.arch.lifecycle.ViewModelProviders;
 
 import com.example.rechargecenter.R;
 
+import java.util.Objects;
+
 public class DashboardFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_order, container, false);
-        TextView title_tv = root.findViewById(R.id.title_tv);
+        TextView title_tv = Objects.requireNonNull(getActivity()).findViewById(R.id.title_tv);
         title_tv.setText("服务订单");
         return root;
     }

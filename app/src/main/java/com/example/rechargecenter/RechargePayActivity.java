@@ -32,7 +32,10 @@ public class   RechargePayActivity extends AppCompatActivity {
                 finish();
             }
         });
-
+        //设置金额
+        TextView tv_pay_num = findViewById(R.id.tv_pay_num);
+        String amount = String.valueOf(getIntent().getIntExtra("amount",0));
+        tv_pay_num.setText(amount + ".00");
         Button btn_confirm_pay = findViewById(R.id.btn_confirm_pay);
         btn_confirm_pay.setOnClickListener(new View.OnClickListener() {
             @Override

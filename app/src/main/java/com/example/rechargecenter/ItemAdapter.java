@@ -10,11 +10,15 @@ import android.widget.TextView;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
-    private int lastPressIndex = 0;
+    private int select = 0;
     private int[] amounts;
 
     public ItemAdapter(int[] amounts) {
         this.amounts = amounts;
+    }
+
+    public int getSelect() {
+        return select;
     }
 
     @NonNull
@@ -25,12 +29,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         viewHolder.item_hf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int position = viewHolder.getAdapterPosition();
-                if (lastPressIndex == position) {
-                    lastPressIndex = -1;
-                } else {
-                    lastPressIndex = position;
-                }
+                select = viewHolder.getAdapterPosition();
                 notifyDataSetChanged();
             }
         });
@@ -41,8 +40,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         viewHolder.tv_origin_price.setText(amounts[i] + "元");
         //TODO:网络接口-折扣
-        viewHolder.tv_sale_price.setText(amounts[i] + "元");
-        if (viewHolder.getAdapterPosition() == lastPressIndex) {
+        viewHolder.tv_sale_price.setText("售价：" + amounts[i]);
+        if (viewHolder.getAdapterPosition() == select) {
             viewHolder.item_hf.setSelected(true);
             viewHolder.tv_origin_price.setSelected(true);
             viewHolder.tv_sale_price.setSelected(true);
