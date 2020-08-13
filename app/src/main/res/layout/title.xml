@@ -13,16 +13,18 @@
         android:gravity="center"
         android:textColor="@color/color_333333"
         android:textSize="17sp"/>
-    
+
     <ImageButton
         android:id="@+id/title_btn_back"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_marginBottom="1dp"
+        android:layout_marginTop="1dp"
         android:background="@color/white"
+        android:contentDescription="@string/back"
         android:paddingStart="15dp"
         android:paddingEnd="10dp"
-        android:src="@drawable/return_icon"
-        android:contentDescription="@string/back" />
+        android:src="@drawable/return_icon" />
 
 
 </RelativeLayout>
