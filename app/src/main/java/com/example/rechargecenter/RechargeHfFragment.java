@@ -29,7 +29,8 @@ public class RechargeHfFragment extends Fragment {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 3);
         rv_recharge.setHasFixedSize(true);
         rv_recharge.setLayoutManager(gridLayoutManager);
-        rv_recharge.setAdapter(new ItemAdapter(amounts));
+        final ItemAdapter itemAdapter = new ItemAdapter(amounts);
+        rv_recharge.setAdapter(itemAdapter);
         //点击页面空白处收起软键盘
         root.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -38,13 +39,6 @@ public class RechargeHfFragment extends Fragment {
                 return false;
             }
         });
-        return root;
-    }
-
-    private void initView(View view) {
-        rv_recharge = view.findViewById(R.id.rv_recharge);
-        et_phone = view.findViewById(R.id.input_phone);
-        btn_recharge = view.findViewById(R.id.btn_recharge_now);
 
         btn_recharge.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,9 +49,17 @@ public class RechargeHfFragment extends Fragment {
                     Toast.makeText(getActivity(), "请输入正确的手机号码", Toast.LENGTH_SHORT).show();
                 } else {
                     Intent intent = new Intent(getActivity(), RechargePayActivity.class);
+                    intent.putExtra("amount", amounts[itemAdapter.getSelect()]);
                     startActivity(intent);
                 }
             }
         });
+        return root;
+    }
+
+    private void initView(View view) {
+        rv_recharge = view.findViewById(R.id.rv_recharge);
+        et_phone = view.findViewById(R.id.input_phone);
+        btn_recharge = view.findViewById(R.id.btn_recharge_now);
     }
 }
