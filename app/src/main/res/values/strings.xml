@@ -5,4 +5,6 @@
     <string name="title_activity_bottom_nav">MainActivity</string>
     <string name="title_home">首页</string>
     <string name="title_order">订单</string>
+    <string name="phone_region">账号绑定号码</string>
+    <string name="input_phone">请输入手机号码</string>
 </resources>

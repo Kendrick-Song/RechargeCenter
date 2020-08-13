@@ -82,8 +82,6 @@ public class RechargeHfFragment extends Fragment {
         ib_phone_list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(getActivity(), ContactsActivity.class);
-//                startActivity(intent);
                 Intent intent=new Intent(Intent.ACTION_PICK, ContactsContract.CommonDataKinds.Phone.CONTENT_URI);
                 startActivityForResult(intent,1000);
             }

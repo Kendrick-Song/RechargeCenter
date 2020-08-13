@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
-    private int lastPressIndex = -1;
+    private int lastPressIndex = 0;
     private int[] amounts;
 
     public ItemAdapter(int[] amounts) {

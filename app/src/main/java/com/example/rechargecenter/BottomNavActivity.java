@@ -32,9 +32,11 @@ public class BottomNavActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.hide();
         }
+
         //设置标题
         TextView title_tv = findViewById(R.id.title_tv);
         title_tv.setText("充值中心");
+
         //返回Button
         ImageButton title_btn_back = findViewById(R.id.title_btn_back);
         title_btn_back.setOnClickListener(new View.OnClickListener() {
@@ -43,6 +45,7 @@ public class BottomNavActivity extends AppCompatActivity {
                 finish();
             }
         });
+
         //底部导航栏
         BottomNavigationView navView = findViewById(R.id.nav_view);
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
