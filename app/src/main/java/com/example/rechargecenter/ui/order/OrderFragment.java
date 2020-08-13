@@ -1,4 +1,4 @@
-package com.example.rechargecenter.ui.dashboard;
+package com.example.rechargecenter.ui.order;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,7 +12,7 @@ import com.example.rechargecenter.R;
 
 import java.util.Objects;
 
-public class DashboardFragment extends Fragment {
+public class OrderFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
