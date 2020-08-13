@@ -48,6 +48,7 @@ public class RechargeResultActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(RechargeResultActivity.this, BottomNavActivity.class);
+                intent.putExtra("order", 1);
                 startActivity(intent);
                 finish();
             }

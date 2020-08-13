@@ -1,6 +1,7 @@
 package com.example.rechargecenter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageButton;
 
+import androidx.navigation.NavAction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -75,5 +77,17 @@ public class BottomNavActivity extends AppCompatActivity {
             }
         }
         return super.onTouchEvent(event);
+    }
+
+    //支付结果查看详情时切换到订单界面
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        int mode = intent.getIntExtra("order", 0);
+        if (mode == 1) {
+            NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+            navController.navigate(R.id.navigation_order);
+        }
     }
 }
