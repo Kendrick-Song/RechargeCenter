@@ -12,31 +12,16 @@
         android:id="@+id/recharge_tab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
         android:background="@drawable/tab_stroke"
         app:tabIndicatorColor="@color/color_FF494A"
         app:tabSelectedTextColor="@color/color_FF494A"
-        app:tabTextColor="@color/color_333333"
-        android:layout_marginTop="44dp"/>
+        app:tabTextColor="@color/color_333333" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/recharge_pager"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginBottom="49dp" />
-
-<!--    <ScrollView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent">-->
-<!--        -->
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:orientation="vertical">-->
-<!--            -->
-<!--            -->
-<!--        </LinearLayout>-->
-<!--    </ScrollView>-->
-
-
 
 </LinearLayout>
