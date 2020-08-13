@@ -18,7 +18,6 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 
-
 public class BottomNavActivity extends AppCompatActivity {
 
     @Override
@@ -43,12 +42,11 @@ public class BottomNavActivity extends AppCompatActivity {
 
         //底部导航栏
         BottomNavigationView navView = findViewById(R.id.nav_view);
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_order)
-                .build();
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.navigation_home, R.id.navigation_order).build();
         final NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
         //防止fragment反复加载
         navView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -63,12 +61,6 @@ public class BottomNavActivity extends AppCompatActivity {
                 }
             }
         });
-
-        int id = getIntent().getIntExtra("order", 0);
-        if (id == 1) {
-            navController.navigate(R.id.navigation_order);
-        }
-
     }
 
     //点击空白处收起软键盘

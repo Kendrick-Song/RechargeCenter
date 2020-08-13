@@ -29,16 +29,22 @@ public class RechargeHfFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View root = inflater.inflate(R.layout.fragment_recharge_hf, container, false);
+
+        //初始化view
         initView(root);
 
+        //通讯录获取联系人
         loadContacts(root);
+
         //充值金额选项界面设置
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 3);
         rv_recharge.setHasFixedSize(true);
         rv_recharge.setLayoutManager(gridLayoutManager);
         final ItemAdapter itemAdapter = new ItemAdapter(amounts);
         rv_recharge.setAdapter(itemAdapter);
+
         //点击页面空白处收起软键盘
         root.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -48,15 +54,16 @@ public class RechargeHfFragment extends Fragment {
             }
         });
 
+        //重置按钮相关逻辑判断与数据传递
         btn_recharge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // validate
-                ItemAdapter ad = new ItemAdapter(amounts);
                 String phone = et_phone.getText().toString().trim();
                 if (phone.length() != 11) {
+                    //判断号码格式
                     Toast.makeText(getActivity(), "请输入正确的手机号码", Toast.LENGTH_SHORT).show();
                 } else {
+                    //传递所选金额
                     Intent intent = new Intent(getActivity(), RechargePayActivity.class);
                     intent.putExtra("amount", amounts[itemAdapter.getSelect()]);
                     startActivity(intent);
@@ -73,13 +80,13 @@ public class RechargeHfFragment extends Fragment {
     }
 
     //点击小人头从通讯录中选择联系人
-    private void loadContacts(View view){
+    private void loadContacts(View view) {
         ib_phone_list = view.findViewById(R.id.phone_list);
         ib_phone_list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(Intent.ACTION_PICK, ContactsContract.CommonDataKinds.Phone.CONTENT_URI);
-                startActivityForResult(intent,1000);
+                Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.CommonDataKinds.Phone.CONTENT_URI);
+                startActivityForResult(intent, 1000);
             }
         });
     }
@@ -87,12 +94,12 @@ public class RechargeHfFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==1000){
-            if (resultCode==Activity.RESULT_OK){
-                if (data!=null){
-                    Uri uri=data.getData();
-                    String contact=getPhoneContacts(uri);
-                    if (contact!=null){
+        if (requestCode == 1000) {
+            if (resultCode == Activity.RESULT_OK) {
+                if (data != null) {
+                    Uri uri = data.getData();
+                    String contact = getPhoneContacts(uri);
+                    if (contact != null) {
                         et_phone.setText(contact);
                     }
                 }
@@ -100,13 +107,13 @@ public class RechargeHfFragment extends Fragment {
         }
     }
 
-    private String getPhoneContacts(Uri uri){
-        String contact ;
+    private String getPhoneContacts(Uri uri) {
+        String contact;
         //得到ContentResolver对象
         ContentResolver cr = getActivity().getContentResolver();
         Cursor cursor = cr.query(uri, null, null, null, null);
-        if (cursor != null&&cursor.moveToFirst()) {
-            contact=cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+        if (cursor != null && cursor.moveToFirst()) {
+            contact = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
             cursor.close();
         } else {
             return null;
