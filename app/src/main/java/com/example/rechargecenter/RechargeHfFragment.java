@@ -7,8 +7,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,8 +17,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class RechargeHfFragment extends Fragment {
@@ -29,7 +25,6 @@ public class RechargeHfFragment extends Fragment {
     private Button btn_recharge;
     private EditText et_phone;
     private ImageButton ib_phone_list;
-    private String username,usernumber;
     private int[] amounts = new int[]{30, 50, 100, 200, 300, 500};
 
     @Override
