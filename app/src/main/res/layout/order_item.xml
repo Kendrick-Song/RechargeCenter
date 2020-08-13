@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="355dp"
+    android:layout_height="135dp"
+    android:background="@drawable/order_item_bg"
+    android:layout_margin="10dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="状态"
+        android:textSize="13sp"
+        android:textColor="#999999"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="17.5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16.5dp"
+        android:layout_marginStart="293dp"
+        android:text="已支付"
+        android:textSize="15sp"
+        android:textColor="#FF4B4B"/>
+
+    <View
+        android:layout_width="320dp"
+        android:layout_height="0.5dp"
+        android:background="#EEEEEE"
+        android:layout_marginStart="17.5dp"
+        android:layout_marginTop="45.5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#999999"
+        android:text="类型："
+        android:textSize="13sp"
+        android:layout_marginStart="17.5dp"
+        android:layout_marginTop="67.5dp"/>
+
+    <TextView
+        android:id="@+id/order_chargetype"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#333333"
+        android:text="话费充值"
+        android:textSize="13sp"
+        android:layout_marginStart="54.5dp"
+        android:layout_marginTop="67.5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#999999"
+        android:text="支付方式："
+        android:textSize="13sp"
+        android:layout_marginStart="155dp"
+        android:layout_marginTop="67.5dp"/>
+
+    <TextView
+        android:id="@+id/order_paytype"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#333333"
+        android:text="H5微信支付"
+        android:textSize="13sp"
+        android:layout_marginStart="219.5dp"
+        android:layout_marginTop="67.5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#999999"
+        android:text="金额："
+        android:textSize="13sp"
+        android:layout_marginStart="17.5dp"
+        android:layout_marginTop="93dp"/>
+
+    <TextView
+        android:id="@+id/order_amout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#333333"
+        android:text="30元"
+        android:textSize="13sp"
+        android:layout_marginStart="54.5dp"
+        android:layout_marginTop="93dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#999999"
+        android:text="时间："
+        android:textSize="13sp"
+        android:layout_marginStart="155dp"
+        android:layout_marginTop="93dp"/>
+
+    <TextView
+        android:id="@+id/order_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#333333"
+        android:text="2000.8.18  5:20:13"
+        android:textSize="13sp"
+        android:layout_marginStart="193dp"
+        android:layout_marginTop="93dp"/>
+
+</RelativeLayout>
