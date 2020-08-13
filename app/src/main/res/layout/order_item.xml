@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
+    android:id="@+id/item_order"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="355dp"
     android:layout_height="135dp"
@@ -79,7 +80,7 @@
         android:layout_marginTop="93dp"/>
 
     <TextView
-        android:id="@+id/order_amout"
+        android:id="@+id/order_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#333333"
