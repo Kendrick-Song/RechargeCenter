@@ -8,17 +8,29 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
     private int select = 0;
-    private int[] amounts;
+    private List<PhoneGoodsBean.ResultBean> resultBeanList;
 
-    public ItemAdapter(int[] amounts) {
-        this.amounts = amounts;
+    public ItemAdapter() {
+        resultBeanList = new ArrayList<>();
     }
 
     public int getSelect() {
         return select;
+    }
+
+    public void setResultBeanList(List<PhoneGoodsBean.ResultBean> resultBeanList) {
+        this.resultBeanList = resultBeanList;
+        notifyDataSetChanged();
+    }
+
+    public List<PhoneGoodsBean.ResultBean> getResultBeanList() {
+        return resultBeanList;
     }
 
     @NonNull
@@ -38,9 +50,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        viewHolder.tv_origin_price.setText(amounts[i] + "元");
-        //TODO:网络接口-折扣
-        viewHolder.tv_sale_price.setText("售价：" + amounts[i]);
+        viewHolder.tv_origin_price.setText(resultBeanList.get(i).getAdvicePrice() + "元");
+        viewHolder.tv_sale_price.setText("售价：" + resultBeanList.get(i).getSs_amount());
         if (viewHolder.getAdapterPosition() == select) {
             viewHolder.item_hf.setSelected(true);
             viewHolder.tv_origin_price.setSelected(true);
@@ -54,7 +65,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return amounts.length;
+        return resultBeanList.size();
     }
 
 

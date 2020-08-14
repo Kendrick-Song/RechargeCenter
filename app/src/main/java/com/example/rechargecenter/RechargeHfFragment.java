@@ -17,7 +17,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.alibaba.fastjson.JSON;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
+
+import okhttp3.Call;
 
 public class RechargeHfFragment extends Fragment {
 
@@ -25,7 +32,8 @@ public class RechargeHfFragment extends Fragment {
     private Button btn_recharge;
     private EditText et_phone;
     private ImageButton ib_phone_list;
-    private int[] amounts = new int[]{30, 50, 100, 200, 300, 500};
+    private TextView phone_area;
+    private ItemAdapter itemAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -38,11 +46,14 @@ public class RechargeHfFragment extends Fragment {
         //通讯录获取联系人
         loadContacts(root);
 
+        //从服务器获取数据
+        getPrice();
+
         //充值金额选项界面设置
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 3);
         rv_recharge.setHasFixedSize(true);
         rv_recharge.setLayoutManager(gridLayoutManager);
-        final ItemAdapter itemAdapter = new ItemAdapter(amounts);
+        itemAdapter = new ItemAdapter();
         rv_recharge.setAdapter(itemAdapter);
 
         //点击页面空白处收起软键盘
@@ -65,7 +76,8 @@ public class RechargeHfFragment extends Fragment {
                 } else {
                     //传递所选金额
                     Intent intent = new Intent(getActivity(), RechargePayActivity.class);
-                    intent.putExtra("amount", amounts[itemAdapter.getSelect()]);
+                    intent.putExtra("mobile", phone);
+                    intent.putExtra("amount", itemAdapter.getResultBeanList().get(itemAdapter.getSelect()).getSs_amount());
                     startActivity(intent);
                 }
             }
@@ -77,6 +89,7 @@ public class RechargeHfFragment extends Fragment {
         rv_recharge = view.findViewById(R.id.rv_recharge);
         et_phone = view.findViewById(R.id.input_phone);
         btn_recharge = view.findViewById(R.id.btn_recharge_now);
+        phone_area = view.findViewById(R.id.phone_area);
     }
 
     //点击小人头从通讯录中选择联系人
@@ -119,5 +132,27 @@ public class RechargeHfFragment extends Fragment {
             return null;
         }
         return contact;
+    }
+
+    void getPrice() {
+        OkHttpUtils
+                .post()
+                .url("https://zhongtai.syt1000.com/Home/Recharge/getNewMobilePriceList")
+                .addParams("mobile", "17666275435")
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        Toast.makeText(getActivity(), "网络请求错误，请稍后再试", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        //处理返回数据
+                        PhoneGoodsBean phoneGoodsBean = JSON.parseObject(response, PhoneGoodsBean.class);
+                        phone_area.setText(phoneGoodsBean.getResult().get(0).getProvince() + phoneGoodsBean.getResult().get(0).getOperator());
+                        itemAdapter.setResultBeanList(phoneGoodsBean.getResult());
+                    }
+                });
     }
 }

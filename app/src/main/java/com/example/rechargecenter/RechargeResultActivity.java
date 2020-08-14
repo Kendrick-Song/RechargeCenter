@@ -9,11 +9,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.Callback;
-
-import okhttp3.Call;
-import okhttp3.Response;
 
 public class RechargeResultActivity extends AppCompatActivity {
 
@@ -53,30 +48,5 @@ public class RechargeResultActivity extends AppCompatActivity {
                 finish();
             }
         });
-    }
-
-    public void getData() {
-        OkHttpUtils
-                .post()
-                .url("url")
-                .addParams("username", "hyman")
-                .addParams("password", "123")
-                .build()
-                .execute(new Callback() {
-                    @Override
-                    public Object parseNetworkResponse(Response response, int id) throws Exception {
-                        return null;
-                    }
-
-                    @Override
-                    public void onError(Call call, Exception e, int id) {
-
-                    }
-
-                    @Override
-                    public void onResponse(Object response, int id) {
-
-                    }
-                });
     }
 }
