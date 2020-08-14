@@ -150,7 +150,7 @@ public class RechargeHfFragment extends Fragment {
                     public void onResponse(String response, int id) {
                         //处理返回数据
                         PhoneGoodsBean phoneGoodsBean = JSON.parseObject(response, PhoneGoodsBean.class);
-                        phone_area.setText(phoneGoodsBean.getResult().get(0).getProvince() + phoneGoodsBean.getResult().get(0).getOperator());
+                        phone_area.setText("账号绑定号码（" + phoneGoodsBean.getResult().get(0).getProvince() + phoneGoodsBean.getResult().get(0).getOperator() + "）");
                         itemAdapter.setResultBeanList(phoneGoodsBean.getResult());
                     }
                 });
