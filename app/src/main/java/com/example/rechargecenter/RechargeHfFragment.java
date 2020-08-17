@@ -104,7 +104,7 @@ public class RechargeHfFragment extends Fragment {
                     //传递所选金额
                     Intent intent = new Intent(getActivity(), RechargePayActivity.class);
                     intent.putExtra("mobile", phone);
-                    intent.putExtra("recharge_amount", itemAdapter.getResultBeanList().get(itemAdapter.getSelect()).getAdvicePrice());
+                    intent.putExtra("recharge_amount", itemAdapter.getResultBeanList().get(itemAdapter.getSelect()).getRechargeAmount());
                     intent.putExtra("amount", itemAdapter.getResultBeanList().get(itemAdapter.getSelect()).getSs_amount());
                     startActivity(intent);
                 }

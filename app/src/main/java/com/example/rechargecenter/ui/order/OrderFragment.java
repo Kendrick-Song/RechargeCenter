@@ -10,7 +10,7 @@ import android.widget.TextView;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 
-import com.example.rechargecenter.Order_ItemAdapter;
+import com.example.rechargecenter.OrderItemAdapter;
 import com.example.rechargecenter.R;
 
 import java.util.Objects;
@@ -34,7 +34,7 @@ public class OrderFragment extends Fragment {
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         rv_order.setLayoutManager(manager);
-        Order_ItemAdapter itemAdapter = new Order_ItemAdapter();
+        OrderItemAdapter itemAdapter = new OrderItemAdapter();
         rv_order.setAdapter(itemAdapter);
 
         return root;

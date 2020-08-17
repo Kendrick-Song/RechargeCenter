@@ -46,7 +46,9 @@ public class RechargePayActivity extends AppCompatActivity {
         btn_confirm_pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(RechargePayActivity.this, RechargeResultActivity.class);
+                Intent intent = new Intent(RechargePayActivity.this, WechatPayActivity.class);
+                intent.putExtra("mobile", getIntent().getStringExtra("mobile"));
+                intent.putExtra("recharge_amount", getIntent().getStringExtra("recharge_amount"));
                 startActivity(intent);
                 finish();
             }

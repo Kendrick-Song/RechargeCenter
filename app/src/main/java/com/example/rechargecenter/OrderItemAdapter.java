@@ -9,18 +9,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
-public class Order_ItemAdapter extends RecyclerView.Adapter<Order_ItemAdapter.ViewHolder>{
+public class OrderItemAdapter extends RecyclerView.Adapter<OrderItemAdapter.ViewHolder> {
 
 
     @NonNull
     @Override
-    public Order_ItemAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public OrderItemAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.order_item, viewGroup, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Order_ItemAdapter.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull OrderItemAdapter.ViewHolder viewHolder, int i) {
 
     }
 
