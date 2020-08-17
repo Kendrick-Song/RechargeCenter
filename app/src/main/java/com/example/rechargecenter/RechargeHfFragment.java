@@ -50,14 +50,12 @@ public class RechargeHfFragment extends Fragment {
         //通讯录获取联系人
         loadContacts(root);
 
-        //从服务器获取默认数据
-        getPrice();
-
         //充值金额选项界面设置
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 3);
         rv_recharge.setHasFixedSize(true);
         rv_recharge.setLayoutManager(gridLayoutManager);
         itemAdapter = new ItemAdapter();
+        setPhoneAreaText();
         rv_recharge.setAdapter(itemAdapter);
 
         //监听输入号码
@@ -78,6 +76,10 @@ public class RechargeHfFragment extends Fragment {
                 if (phone.length() == 11) {
                     //获取对应数据
                     getPrice(phone);
+                } else if (!itemAdapter.isDefault) {
+                    //号码非11位且adapter为非默认状态
+                    itemAdapter.setDefault();
+                    setPhoneAreaText();
                 }
             }
         });
@@ -160,27 +162,9 @@ public class RechargeHfFragment extends Fragment {
         return contact;
     }
 
-    void getPrice() {
-        //默认数据获取
-        OkHttpUtils
-                .post()
-                .url("https://zhongtai.syt1000.com/Home/Recharge/getNewMobilePriceList")
-                .addParams("mobile", "18604269818")
-                .build()
-                .execute(new StringCallback() {
-                    @Override
-                    public void onError(Call call, Exception e, int id) {
-                        Toast.makeText(getActivity(), "网络请求错误，请稍后再试", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onResponse(String response, int id) {
-                        //处理返回数据
-                        PhoneGoodsBean phoneGoodsBean = JSON.parseObject(response, PhoneGoodsBean.class);
-                        phone_area.setText("账号绑定号码");
-                        itemAdapter.setResultBeanList(phoneGoodsBean.getResult());
-                    }
-                });
+    //设置号码区域字段显示
+    void setPhoneAreaText() {
+        phone_area.setText("账号绑定号码（" + itemAdapter.getResultBeanList().get(0).getProvince() + itemAdapter.getResultBeanList().get(0).getOperator() + "）");
     }
 
     void getPrice(String phone) {
@@ -201,14 +185,14 @@ public class RechargeHfFragment extends Fragment {
                         //处理返回数据
                         JSONObject object = JSON.parseObject(response);
                         if (object.getIntValue("status") == 1) {
+                            //号码正确
                             PhoneGoodsBean phoneGoodsBean = JSON.parseObject(response, PhoneGoodsBean.class);
-                            phone_area.setText("账号绑定号码（" + phoneGoodsBean.getResult().get(0).getProvince() + phoneGoodsBean.getResult().get(0).getOperator() + "）");
-                            itemAdapter.getResultBeanList().clear();
-                            itemAdapter.notifyDataSetChanged();
                             itemAdapter.setResultBeanList(phoneGoodsBean.getResult());
                         } else {
-                            phone_area.setText("账号绑定号码");
+                            //号码不正确
+                            itemAdapter.setDefault();
                         }
+                        setPhoneAreaText();
                     }
                 });
     }
