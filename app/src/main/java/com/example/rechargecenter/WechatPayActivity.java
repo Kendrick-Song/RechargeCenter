@@ -120,19 +120,19 @@ public class WechatPayActivity extends AppCompatActivity {
                             extraHeaders.put("Referer", "http://zhongtai.syt1000.com");
                             webView.loadUrl(url, extraHeaders);
                             webView.setWebViewClient(new WebViewClient() {
-
                                 @Override
                                 public boolean shouldOverrideUrlLoading(WebView view, String url) {
                                     try {
-
                                         if (url.startsWith("weixin://wap/pay?")) {
                                             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                                             startActivity(intent);
+                                            finish();
                                             return true;
                                         } else if (url.startsWith("https://wx.tenpay.com")) {
                                             Map<String, String> extraHeaders = new HashMap<>();
                                             extraHeaders.put("Referer", "http://zhongtai.syt1000.com");
                                             view.loadUrl(url, extraHeaders);
+                                            finish();
                                             return true;
                                         }
                                     } catch (Exception e) {
@@ -141,11 +141,13 @@ public class WechatPayActivity extends AppCompatActivity {
                                     }
                                     // 在APP内部打开链接，不要调用系统浏览器
                                     view.loadUrl(url);
+                                    finish();
                                     return true;
                                 }
                             });
                         } else {
                             Toast.makeText(WechatPayActivity.this, "网络请求错误，请稍后再试", Toast.LENGTH_SHORT).show();
+                            finish();
                         }
                     }
                 });
