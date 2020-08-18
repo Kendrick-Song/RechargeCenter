@@ -164,7 +164,11 @@ public class RechargeHfFragment extends Fragment {
 
     //设置号码区域字段显示
     void setPhoneAreaText() {
-        phone_area.setText("账号绑定号码（" + itemAdapter.getResultBeanList().get(0).getProvince() + itemAdapter.getResultBeanList().get(0).getOperator() + "）");
+        if (itemAdapter.getResultBeanList().get(0).getProvince().equals("") || itemAdapter.getResultBeanList().get(0).getOperator().equals("")) {
+            phone_area.setText("账号绑定号码");
+        } else {
+            phone_area.setText("账号绑定号码（" + itemAdapter.getResultBeanList().get(0).getProvince() + itemAdapter.getResultBeanList().get(0).getOperator() + "）");
+        }
     }
 
     void getPrice(String phone) {
