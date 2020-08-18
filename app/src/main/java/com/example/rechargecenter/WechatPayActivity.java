@@ -1,11 +1,12 @@
 package com.example.rechargecenter;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -16,6 +17,9 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import okhttp3.Call;
 
@@ -46,8 +50,6 @@ public class WechatPayActivity extends AppCompatActivity {
 
         //显示支付页面
         webView = findViewById(R.id.wv_wechat_pay);
-        webView.setWebViewClient(new WebViewClient());
-        webView.setWebChromeClient(new WebChromeClient());
         WebSettings mSettings = webView.getSettings();
 
         // 支持JS
@@ -114,7 +116,34 @@ public class WechatPayActivity extends AppCompatActivity {
                         JSONObject object = JSON.parseObject(response);
                         if (object.getIntValue("status") == 1) {
                             url = JSON.parseObject(object.getString("result")).getString("timeStamp");
-                            webView.loadUrl(url);
+                            Map<String, String> extraHeaders = new HashMap<>();
+                            extraHeaders.put("Referer", "http://zhongtai.syt1000.com");
+                            webView.loadUrl(url, extraHeaders);
+                            webView.setWebViewClient(new WebViewClient() {
+
+                                @Override
+                                public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                                    try {
+
+                                        if (url.startsWith("weixin://wap/pay?")) {
+                                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                                            startActivity(intent);
+                                            return true;
+                                        } else if (url.startsWith("https://wx.tenpay.com")) {
+                                            Map<String, String> extraHeaders = new HashMap<>();
+                                            extraHeaders.put("Referer", "http://zhongtai.syt1000.com");
+                                            view.loadUrl(url, extraHeaders);
+                                            return true;
+                                        }
+                                    } catch (Exception e) {
+                                        //防止crash (如果手机上没有安装处理某个scheme开头的url的APP, 会导致crash)
+                                        return true;//没有安装该app时，返回true，表示拦截自定义链接，但不跳转，避免弹出上面的错误页面
+                                    }
+                                    // 在APP内部打开链接，不要调用系统浏览器
+                                    view.loadUrl(url);
+                                    return true;
+                                }
+                            });
                         } else {
                             Toast.makeText(WechatPayActivity.this, "网络请求错误，请稍后再试", Toast.LENGTH_SHORT).show();
                         }
