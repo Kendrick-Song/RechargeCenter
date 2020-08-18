@@ -106,12 +106,13 @@ public class RechargeHfFragment extends Fragment {
                     intent.putExtra("mobile", phone);
                     intent.putExtra("recharge_amount", itemAdapter.getResultBeanList().get(itemAdapter.getSelect()).getRechargeAmount());
                     intent.putExtra("amount", itemAdapter.getResultBeanList().get(itemAdapter.getSelect()).getSs_amount());
-                    startActivity(intent);
+                    startActivityForResult(intent, 10);
                 }
             }
         });
         return root;
     }
+
 
     private void initView(View view) {
         rv_recharge = view.findViewById(R.id.rv_recharge);
