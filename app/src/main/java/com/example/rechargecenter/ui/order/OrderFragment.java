@@ -40,6 +40,8 @@ public class OrderFragment extends Fragment {
         TextView title_tv = Objects.requireNonNull(getActivity()).findViewById(R.id.title_tv);
         title_tv.setText("服务订单");
 
+        getOrder();
+
         //订单RecyclerView
         RecyclerView rv_order = root.findViewById(R.id.rv_order);
         rv_order.setHasFixedSize(true);
