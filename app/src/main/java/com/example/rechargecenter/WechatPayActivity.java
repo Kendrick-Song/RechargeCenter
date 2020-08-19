@@ -126,13 +126,14 @@ public class WechatPayActivity extends AppCompatActivity {
                                         if (url.startsWith("weixin://wap/pay?")) {
                                             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                                             startActivity(intent);
-                                            finish();
+//                                            todo:
+//                                            finish();
                                             return true;
                                         } else if (url.startsWith("https://wx.tenpay.com")) {
                                             Map<String, String> extraHeaders = new HashMap<>();
                                             extraHeaders.put("Referer", "http://zhongtai.syt1000.com");
                                             view.loadUrl(url, extraHeaders);
-                                            finish();
+//                                            finish();
                                             return true;
                                         }
                                     } catch (Exception e) {

@@ -7,27 +7,34 @@
     tools:context=".ui.order.OrderFragment">
 
     <LinearLayout
-        android:layout_marginTop="44dp"
         android:layout_width="match_parent"
         android:layout_height="37dp"
+        android:layout_marginTop="44dp"
         android:background="@color/white">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="筛选"
-            android:textSize="14sp"
-            android:textColor="@color/color_333333"
+            android:layout_gravity="center_vertical"
             android:layout_marginLeft="15dp"
-            android:layout_gravity="center_vertical"/>
+            android:text="筛选"
+            android:textColor="@color/color_333333"
+            android:textSize="14sp" />
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_order"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginTop="12dp"
-        android:layout_marginBottom="49dp"
-        android:background="#F8F8F8"/>
+        android:layout_marginBottom="49dp">
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_order"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#F8F8F8" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>
